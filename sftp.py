@@ -10,25 +10,24 @@ uname = input("Username: ")
 pwd = input("Password: ")
 def datatransfer(target, uname, pwd):
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-	#ssh.load_system_host_keys(filename="shrekrsa.txt")
 	ssh.connect(target, username=uname, password=pwd)
 		
-	reply = input("Befehl: ")
-	print(reply)
+	reply = input("Command: ")
+
 	if reply == "Get" or reply == "get":
-		item = input("Datei: ")
-		Ziel = item
+		item = input("File: ")
+		dst = item
 		ftp_client=ssh.open_sftp()
-		ftp_client.get(item, Ziel)
+		ftp_client.get(item, dst)
 		ftp_client.close()
 		ssh.close()
 			
 			
 	elif reply == "Put" or reply == "put":
-		item = input("Datei: ")
-		Ziel = item
+		item = input("File: ")
+		dst = item
 		ftp_client=ssh.open_sftp()
-		ftp_client.put(item, Ziel, confirm=False, callback=None)
+		ftp_client.put(item, dst, confirm=False, callback=None)
 		ftp_client.close()
 		ssh.close()
 	else:
