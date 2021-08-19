@@ -5,7 +5,7 @@ import sys
 
 ssh = paramiko.SSHClient()
 
-target = "192.168.178.25"
+target = str(input("Target: "))
 uname = input("Username: ")
 pwd = input("Password: ")
 def datatransfer(target, uname, pwd):
